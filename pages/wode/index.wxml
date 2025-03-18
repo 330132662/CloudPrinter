@@ -1,16 +1,19 @@
 <view class="body_css">
   <view class="tx_view_css">
-    <image class="tx_img_css" src="{{userInfo.avatarUrl}}" />
-    <span class="tx_name_css">
-      {{userInfo.nickName}}
-    </span>
+    <image class="tx_img_css" src="{{userInfo.avatarUrl}}"  />
+    <!-- <button open-type="chooseAvatar">获取头像</button> -->
+    <span class="tx_name_css"><input type="nickname" value="{{userInfo.nickName}}" bindnicknamereview="updateUserinfo" 
+        bindinput="bindinput"
+     /></span>
+    <!-- <button class="btn" type="primary" loading="{{loading}}"  bindtap="updateUserinfo">保存</button> -->
+    
   </view>
   <view class="list_view_css">
-      <view class="list_nr_view_css" bindtap="zt" data-url="or_list">
-        <span class="iconfont-i icon-dingdan"></span>
-        <span class="list_name_css">我的订单</span>
-        <span class="iconfont-i icon-qianjin list_qianjin_css"></span>
-      </view>
+    <view class="list_nr_view_css" bindtap="zt" data-url="or_list">
+      <span class="iconfont-i icon-dingdan"></span>
+      <span class="list_name_css">我的订单</span>
+      <span class="iconfont-i icon-qianjin list_qianjin_css"></span>
+    </view>
     <view class="list_nr_view_css">
       <span class="iconfont-i icon-fenxiang"></span>
       <span class="list_name_css">分享给好友</span>
@@ -25,7 +28,7 @@
   </view>
 </view>
 <view class="mask" hidden="{{hideLogin}}"></view>
-<view class="dialog-out" hidden="{{hideLogin}}"> 
+<view class="dialog-out" hidden="{{hideLogin}}">
   <view class="dialog-box">
     <view class="dialog-content text-center">
       <text>登录后可体验完整功能</text>

@@ -74,12 +74,13 @@ Page({
     },
     onShow: function () {},
     //获取指定范围内的打印机
-    getPrinters(distance = 1000) {
+    getPrinters(distance = 99999) {
         wx.getLocation({
             altitude: 'altitude',
             isHighAccuracy: true,
             type: "wgs84",
             success: res => {
+                console.log("局里更新", distance, res);
                 wx.showLoading({
                     title: '加载中...',
                     mask: true,
@@ -100,11 +101,19 @@ Page({
                     },
                     fail: err => {
                         wx.hideLoading()
-                        console.log(err)
+                        console.warn(err)
                         wx.showToast({
                             title: err,
                         })
-                    }
+                    },
+
+                })
+            },
+            complete: comp => {
+                wx.hideLoading()
+                console.log(comp)
+                wx.showToast({
+                    title: comp,
                 })
             }
         })
@@ -115,11 +124,14 @@ Page({
         let printers = this.data.printer;
         let device = [];
         for (let i = 0; i < printers.length; i++) {
-            device.push({device_id:printers[i]['device_id'],device_key:printers[i]['device_key']});
+            device.push({
+                device_id: printers[i]['device_id'],
+                device_key: printers[i]['device_key']
+            });
         }
         app.request({
             url: "api/shop/deviceInfo",
-            method:"post",
+            method: "post",
             data: {
                 device: device,
             },
@@ -242,20 +254,24 @@ Page({
 
     },
     searchPrinter() {
-        let menu = ["500米", "1000米", "2000米", "5000米","9999999米(最大范围)"];
+        let menu = ["500", "1000", "2000", "5000", "9999999"];
         wx.getStorage({
             key: 'user',
             success: res => {
-                console.log(res.data.nickName)
-                if (res.data.nickName === "厚光") {
-                    menu.push("100000000米");
+                // 获取用户信息   res
+                console.log("b", res);
+                var index = res.tapIndex;
+
+                if (index == undefined) {
+                    index = 4;
                 }
-                console.log('tapIndex',parseInt(menu[res.tapIndex]));
+                console.log('tapIndex', index, parseInt(menu[index]));
                 wx.showActionSheet({
                     alertText: "搜索范围",
                     itemList: menu,
                     success: res => {
-                        this.getPrinters(parseInt(menu[res.tapIndex]));
+                        console.log("aa", res);
+                        this.getPrinters(parseInt(menu[index]));
                     }
                 })
             },

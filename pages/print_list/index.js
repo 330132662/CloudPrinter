@@ -269,20 +269,20 @@ Page({
                 }
             },
             fail: err => {
-                console.log(err);
-                err = JSON.stringify(err);
-                wx.showModal({
-                    title: "警告",
-                    content: "预览错误",
-                    confirmText: "复制错误",
-                    success: _ => {
-                        if (_.confirm) {
-                            wx.setClipboardData({
-                                data: err,
-                            })
-                        }
-                    }
-                })
+                console.log(err.errMsg);
+                // err = JSON.stringify(err);
+                // wx.showModal({
+                //     title: "警告",
+                //     content: "预览错误",
+                //     confirmText: "复制错误",
+                //     success: _ => {
+                //         if (_.confirm) {
+                //             wx.setClipboardData({
+                //                 data: err,
+                //             })
+                //         }
+                //     }
+                // })
             }
         })
     },
@@ -871,7 +871,7 @@ Page({
                     device: [device]
                 },
                 success: res => {
-                    console.log(res)
+                    console.log("11",res.data);
                     wx.hideLoading();
                     let status = res.data[device.device_id]['online'];
                     let text_status = ['打印机盒子未上线', '打印机盒子在线', '打印盒子状态未知'];

@@ -72,7 +72,7 @@ Page({
       success: res => {
         wx.hideLoading();
         res = res.data;
-        console.log(res);
+        // console.log(res);
         if (type == 1) {
           _this.setData({
             isRefresh: false
@@ -83,12 +83,16 @@ Page({
         }
         if (res.code == "0") {
           let data = res.data;
+        console.log("a",res.code == "0",data.total);
+
           if (data.total > 0) {
             if (_this.data.or_list == []) {
               _this.setData({
                 or_list: data.data,
                 z_page: data.last_page
               });
+            console.log("a",_this.or_list);
+
             } else {
               _this.setData({
                 or_list: _this.data.or_list.concat(data.data),

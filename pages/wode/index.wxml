@@ -1,8 +1,8 @@
 <view class="body_css">
   <view class="tx_view_css">
-    <image class="tx_img_css" src="{{userInfo.avatarUrl}}"  />
+    <image class="tx_img_css" src="{{avatarUrl}}"  />
     <!-- <button open-type="chooseAvatar">获取头像</button> -->
-    <span class="tx_name_css"><input type="nickname" value="{{userInfo.nickName}}" bindnicknamereview="updateUserinfo" 
+    <span class="tx_name_css"><input type="nickname" value="{{nickname}}" bindnicknamereview="updateUserinfo" 
         bindinput="bindinput"
      /></span>
     <!-- <button class="btn" type="primary" loading="{{loading}}"  bindtap="updateUserinfo">保存</button> -->

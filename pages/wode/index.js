@@ -10,6 +10,7 @@ Page({
         hideLogin: true,
         userInfo: {},
         nickname: "",
+        avatarUrl: "",
     },
 
     /**
@@ -83,6 +84,7 @@ Page({
                 that.setData({
                     userInfo: res1.data
                 });
+                that.reqUserInfo();
             },
             fail: err => {
                 wx.showToast({
@@ -97,6 +99,51 @@ Page({
         });
 
 
+    },
+    reqUserInfo() {
+        //     主要获取昵称和头像  
+        var _this = this;
+        // var nick = e.detail.value;
+        let data = {
+            "openid": _this.data.userInfo.openid,
+            // "nick": nick,
+        };
+        wx.request({
+            url: `${app.api}/api/user`,
+            method: "GET",
+            data: data,
+            success: res => {
+                _this.setData({
+                    hideLogin: true
+                });
+                res = res.data;
+                var resp = res.data;
+                // console.log("a1", resp);
+                if (res.code === 0) {
+                    // 处理本地缓存和data里的值 
+
+                    _this.setData({
+                        hideLogin: true,
+                        nickname: resp.nickName,
+                        avatarUrl: resp.avatarUrl,
+                    });
+                    console.log(_this.nickName, _this.avatarUrl);
+
+
+                } else {
+                    wx.hideLoading()
+                    wx.showModal({
+                        title: "错误",
+                        success: res => {
+                            wx.reLaunch({
+                                url: '/pages/index/index',
+                            })
+                            return true;
+                        }
+                    })
+                }
+            }
+        })
     },
     bindinput(e) {
         // console.log("b", e.detail);
@@ -119,7 +166,7 @@ Page({
                     // 处理本地缓存和data里的值 
                     //  _this.data.userInfo.nickname = nick ;
                     //  console.log(_this.data.userInfo);
-                
+
                 } else {
                     wx.hideLoading()
                     wx.showModal({

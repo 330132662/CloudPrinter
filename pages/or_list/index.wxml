@@ -32,7 +32,7 @@
           <view class="info">
             <view class="item">
               <view class="title">门店：</view>
-              <view class="val">{{item.s_name}}</view>
+              <view class="val">{{item.shop_name}}</view>
             </view>
             <view class="item">
               <view class="title">设备ID：</view>

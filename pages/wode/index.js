@@ -9,7 +9,7 @@ Page({
     data: {
         hideLogin: true,
         userInfo: {},
-        nickname: "",
+        nickname: "设置个性化昵称",
         avatarUrl: "",
     },
 

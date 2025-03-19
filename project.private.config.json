@@ -7,11 +7,18 @@
         "miniprogram": {
             "list": [
                 {
-                    "name": "个人中心",
-                    "pathName": "pages/wode/index",
+                    "name": "订单列表",
+                    "pathName": "pages/or_list/index",
                     "query": "",
                     "scene": null,
                     "launchMode": "default"
+                },
+                {
+                    "name": "个人中心",
+                    "pathName": "pages/wode/index",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
                 },
                 {
                     "name": "附近的打印机",

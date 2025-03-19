@@ -1,13 +1,13 @@
 <view class="body_css">
   <view class="tx_view_css">
     <image class="tx_img_css" src="{{avatarUrl}}" />
-        <button open-type="chooseAvatar" bindchooseavatar="updateAva" 
-        style="margin-top: 0.618em;" class="mini-btn" type="primary" plain="true" size="mini">获取头像</button>
-        <!-- width: 5em;height: 3em;font-size: 1em; -->
+    <button open-type="chooseAvatar" bindchooseavatar="updateAva" style="margin-top: 0.618em;" class="mini-btn" type="primary" plain="true" size="mini">
+      获取头像
+    </button>
+    <!-- width: 5em;height: 3em;font-size: 1em; -->
     <span class="tx_name_css">
       <input type="nickname" value="{{nickname}}" bindinput="bindinput" />
     </span>
- 
   </view>
   <view class="list_view_css">
     <view class="list_nr_view_css" bindtap="zt" data-url="or_list">
@@ -20,6 +20,11 @@
       <span class="list_name_css">分享给好友</span>
       <span class="iconfont-i icon-qianjin list_qianjin_css"></span>
       <button open-type="share" plain="true" style="border:0;width:100%; height:2.5em;position:fixed;"></button>
+    </view>
+    <view class="list_nr_view_css" bindtap="zt" data-url="">
+      <button open-type="contact" type="primary" plain="true" bindcontact="handleContact" style="width: auto;">
+        在线客服-有任何问题随时点我
+      </button>
     </view>
     <!-- <view class="list_nr_view_css" bindtap="zt" data-url="wodewenku">
       <span class="iconfont-i icon-wenku"></span>

@@ -21,11 +21,11 @@
       <span class="iconfont-i icon-qianjin list_qianjin_css"></span>
       <button open-type="share" plain="true" style="border:0;width:100%; height:2.5em;position:fixed;"></button>
     </view>
-    <view class="list_nr_view_css" bindtap="zt" data-url="wodewenku">
+    <!-- <view class="list_nr_view_css" bindtap="zt" data-url="wodewenku">
       <span class="iconfont-i icon-wenku"></span>
       <span class="list_name_css">我的文库</span>
       <span class="iconfont-i icon-qianjin list_qianjin_css"></span>
-    </view>
+    </view> -->
   </view>
 </view>
 <view class="mask" hidden="{{hideLogin}}"></view>

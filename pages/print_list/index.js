@@ -148,9 +148,9 @@ Page({
                         interstitialAd = wx.createInterstitialAd({
                             adUnitId: data.interstitial
                         })
-                        interstitialAd.onLoad(() => {})
-                        interstitialAd.onError((err) => {})
-                        interstitialAd.onClose(() => {})
+                        interstitialAd.onLoad(() => { })
+                        interstitialAd.onError((err) => { })
+                        interstitialAd.onClose(() => { })
                     }
 
                     // 在适合的场景显示插屏广告
@@ -697,8 +697,8 @@ Page({
                         mask: true
                     })
                 },
-                fail: (res) => {},
-                complete: (res) => {},
+                fail: (res) => { },
+                complete: (res) => { },
             })
         });
     },
@@ -786,25 +786,25 @@ Page({
                                             })
                                             console.log(res);
                                             let sendLists = this.data.lists;
-                                            for (var i = 0; i < sendLists.length; i++) {
-                                                var prid = sendLists[i].id;
-                                                app.request({
-                                                    url: "api/web/sendFileToLianke",
-                                                    data: {
-                                                        id: prid
-                                                    },
-                                                    success: res => {
-                                                        console.log(res);
-                                                        app.request({
-                                                            url: "api/web/loopgetPrinterStatusLianke",
-                                                            data: {
-                                                                id:prid,
-                                                                task_id: res.data.data.task_id
-                                                            },
-                                                        })
-                                                    }
-                                                })
-                                            }
+                                            // for (var i = 0; i < sendLists.length; i++) {
+                                            //     var prid = sendLists[i].id;
+                                            //     app.request({
+                                            //         url: "api/web/sendFileToLianke",
+                                            //         data: {
+                                            //             id: prid
+                                            //         },
+                                            //         success: res => {
+                                            //             console.log(res);
+                                            //             app.request({
+                                            //                 url: "api/web/loopgetPrinterStatusLianke", 这个接口  是缺失的 暂时不管
+                                            //                 data: {
+                                            //                     id:prid,
+                                            //                     task_id: res.data.data.task_id
+                                            //                 },
+                                            //             })
+                                            //         }
+                                            //     })
+                                            // }
                                             wx.showToast({
                                                 title: '支付成功',
                                                 mask: true,
@@ -871,9 +871,10 @@ Page({
                     device: [device]
                 },
                 success: res => {
-                    console.log("11",res.data);
+                    console.log("/deviceInfo", res.data);
                     wx.hideLoading();
                     let status = res.data[device.device_id]['online'];
+                    // status = 2;// 测试代码 强制离线 
                     let text_status = ['打印机盒子未上线', '打印机盒子在线', '打印盒子状态未知'];
                     if (status === 1) {
                         resolve(text_status[status]);

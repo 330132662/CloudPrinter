@@ -57,9 +57,9 @@ Page({
                         interstitialAd = wx.createInterstitialAd({
                             adUnitId: data.interstitial
                         })
-                        interstitialAd.onLoad(() => {})
-                        interstitialAd.onError((err) => {})
-                        interstitialAd.onClose(() => {})
+                        interstitialAd.onLoad(() => { })
+                        interstitialAd.onError((err) => { })
+                        interstitialAd.onClose(() => { })
                     }
 
                     // 在适合的场景显示插屏广告
@@ -72,7 +72,7 @@ Page({
             }
         });
     },
-    onShow: function () {},
+    onShow: function () { },
     //获取指定范围内的打印机
     getPrinters(distance = 99999) {
         wx.getLocation({
@@ -109,12 +109,32 @@ Page({
 
                 })
             },
+            fail: f => {
+                wx.showModal({
+                    title: '',
+                    content: f["errMsg"],
+                    showCancel: false,
+                    cancelText: '取消',
+                    cancelColor: '#000000',
+                    confirmText: '确定',
+                    confirmColor: '#3CC51F',
+                    success: (result) => {
+                        if (result.confirm) {
+
+                        }
+                    },
+                    fail: () => { },
+                    complete: () => { }
+                });
+            },
             complete: comp => {
                 wx.hideLoading()
-                console.log(comp)
-                wx.showToast({
-                    title: comp,
-                })
+                // console.log(comp)
+                // wx.showToast({
+                //     icon: "error",
+                //     title: comp["errMsg"],
+                // });
+
             }
         })
     },

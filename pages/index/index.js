@@ -296,7 +296,7 @@ Page({
                                 signature: data.signature
                             };
                             wx.request({
-                                url: `${app.api}api/user/login`,
+                                url: `${app.api}/api/user/login`,
                                 method: "POST",
                                 data: post,
                                 success: res => {
@@ -353,7 +353,7 @@ Page({
                                 signature: data.signature
                             };
                             wx.request({
-                                url: `${app.api}api/user/login`,
+                                url: `${app.api}/api/user/login`,
                                 method: "POST",
                                 data: post,
                                 success: res => {

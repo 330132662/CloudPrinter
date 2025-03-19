@@ -100,6 +100,35 @@ Page({
 
 
     },
+    updateAva(res) {
+        var ava = res.detail.avatarUrl;
+        // console.log("头像", ava);
+        var _this = this;
+
+        let file = {
+            path: ava,
+            filename: this.data.userInfo.openid + "_ava",
+            // doc_type: 1
+        };
+        app.upload(file).then(result => {
+            var avahttpurl = result.data["savename"];
+            //  上传成功 马上保存给用户信息里
+
+            this.setData({
+                avatarUrl: avahttpurl,
+            });
+
+
+            this.updateUserinfo();
+            console.log("ok");
+        }, err => {
+            wx.showModal({
+                title: "错误",
+                content: (file.filename + err.msg) || (file.filename + JSON.stringify(err))
+            })
+            console.log(err)
+        })
+    },
     reqUserInfo() {
         //     主要获取昵称和头像  
         var _this = this;
@@ -147,11 +176,22 @@ Page({
     },
     bindinput(e) {
         // console.log("b", e.detail);
-        var _this = this;
         var nick = e.detail.value;
+        this.setData({
+            nickname: nick,
+        })
+        this.updateUserinfo();
+    },
+    /**
+     *  请求更新用户信息 
+     */
+    updateUserinfo() {
+        var _this = this;
+
         let data = {
             "openid": _this.data.userInfo.openid,
-            "nick": nick,
+            "nick": _this.data.nickname,
+            "avatar": _this.data.avatarUrl
         };
         wx.request({
             url: `${app.api}/api/user/updateUser`,
@@ -181,9 +221,6 @@ Page({
                 }
             }
         })
-    },
-    updateUserinfo(e) {
-        //用不着    console.log("aaa",e.detail);
     },
     userProfile() {
         var _this = this;

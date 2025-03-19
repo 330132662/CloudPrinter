@@ -1,7 +1,7 @@
 const IV = 'houguang';
 const KEY = 'houguang#sina.cn';
 App({
-    host: "https://dy.appppa.cn",
+    host: "https://dydev.appppa.cn",
     api: "http://dydev.appppa.cn",
     onLaunch: function () {
         wx.getSystemInfo({

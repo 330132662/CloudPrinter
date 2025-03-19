@@ -1,12 +1,13 @@
 <view class="body_css">
   <view class="tx_view_css">
-    <image class="tx_img_css" src="{{avatarUrl}}"  />
-    <!-- <button open-type="chooseAvatar">获取头像</button> -->
-    <span class="tx_name_css"><input type="nickname" value="{{nickname}}" bindnicknamereview="updateUserinfo" 
-        bindinput="bindinput"
-     /></span>
-    <!-- <button class="btn" type="primary" loading="{{loading}}"  bindtap="updateUserinfo">保存</button> -->
-    
+    <image class="tx_img_css" src="{{avatarUrl}}" />
+        <button open-type="chooseAvatar" bindchooseavatar="updateAva" 
+        style="margin-top: 0.618em;" class="mini-btn" type="primary" plain="true" size="mini">获取头像</button>
+        <!-- width: 5em;height: 3em;font-size: 1em; -->
+    <span class="tx_name_css">
+      <input type="nickname" value="{{nickname}}" bindinput="bindinput" />
+    </span>
+ 
   </view>
   <view class="list_view_css">
     <view class="list_nr_view_css" bindtap="zt" data-url="or_list">
